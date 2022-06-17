@@ -45,7 +45,10 @@ let playRound = (playerSelection, computerSelection) => {
         };
     }
 
-    if (playerSelection == 'rock' && computerSelection == 'paper') {
+    if ((playerSelection == 'rock' && computerSelection == 'paper') || 
+        (playerSelection == 'scissors' && computerSelection == 'rock') || 
+        (playerSelection == 'paper' && computerSelection == 'scissors')) {
+
         let result = 'Player loses',
         computerPlay = computerSelection;
 
@@ -55,47 +58,10 @@ let playRound = (playerSelection, computerSelection) => {
         };
     }
 
-    if (playerSelection == 'paper' && computerSelection == 'rock') {
-        let result = 'Player wins',
-        computerPlay = computerSelection;
+    if ((playerSelection == 'paper' && computerSelection == 'rock') || 
+        (playerSelection == 'rock' && computerSelection == 'scissors') || 
+        (playerSelection == 'scissors' && computerSelection == 'paper')) {
 
-        return {
-            'result': result,
-            'computerPlay': computerPlay
-        };
-    }
-
-    if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        let result = 'Player wins',
-        computerPlay = computerSelection;
-
-        return {
-            'result': result,
-            'computerPlay': computerPlay
-        };
-    }
-
-    if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        let result = 'Player loses',
-        computerPlay = computerSelection;
-
-        return {
-            'result': result,
-            'computerPlay': computerPlay
-        };
-    }
-
-    if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        let result = 'Player loses',
-        computerPlay = computerSelection;
-
-        return {
-            'result': result,
-            'computerPlay': computerPlay
-        };
-    }
-
-    if (playerSelection == 'scissors' && computerSelection == 'paper') {
         let result = 'Player wins',
         computerPlay = computerSelection;
 
