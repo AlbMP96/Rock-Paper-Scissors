@@ -96,25 +96,14 @@ function game(playRound) {
 
     round++;
 
-    if (playerScore == 5 || computerScore == 5) {
-        const finalResult = document.querySelector('.final-score');
-        const end = document.createElement('h1');
-        if (playerScore == 5) {
-            end.textContent = `PLAYER WINS`
-        } else {
-            end.textContent = `PLAYER LOSES`
-        }
-
-        finalResult.appendChild(end);
-        updateScore(0, 0, 1);
-    }
+    checkWin(playerScore, computerScore);
 }
 
 // Update score----------------------------------------------------------------------------------------------------------------------
 function updateScore(playerScore, computerScore, round) {
     const roundNumber = document.querySelector('.round-number');
-    const player = document.querySelector('.playerScore');
-    const computer = document.querySelector('.computerScore');
+    const player = document.querySelector('.player-score');
+    const computer = document.querySelector('.computer-score');
 
     roundNumber.textContent = `Round: ${round}`
     player.textContent = `Player: ${playerScore}`
@@ -128,4 +117,20 @@ function roundResult(playerSelection, computerSelection, result) {
 
     round.textContent = `Player play: ${playerSelection}, Computer play: ${computerSelection}`;
     roundResult.textContent = `${result}`;
+}
+
+// Check win--------------------------------------------------------------------------------------------------------------------------
+function checkWin(playerScore, copmuterScore) {
+    if (playerScore == 5 || copmuterScore == 5) {
+        const finalResult = document.querySelector('.final-score');
+        const end = document.createElement('h1');
+        if (playerScore == 5) {
+            end.textContent = `PLAYER WINS`
+        } else {
+            end.textContent = `PLAYER LOSES`
+        }
+
+        finalResult.appendChild(end);
+        updateScore(0, 0, 1);
+    }
 }

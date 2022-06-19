@@ -14,3 +14,10 @@ body {
     cursor: pointer;
     background-color: rgb(121, 121, 121);
 }
+
+.player-score, .computer-score {
+    display: inline;
+    font-weight: bolder;
+    padding: 10px;
+    font-size: 50px;
+}
