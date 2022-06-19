@@ -4,15 +4,20 @@ body {
 }
 
 .choices {
-    padding: 100px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding: 20px;
+}
+
+.choices img {
+  border: solid 15px white;
+  border-radius: 50%;
 }
 
 .choices img:hover {
     cursor: pointer;
-    background-color: rgb(121, 121, 121);
+    border-color: black;
 }
 
 .player-score, .computer-score {
@@ -20,4 +25,17 @@ body {
     font-weight: bolder;
     padding: 10px;
     font-size: 50px;
+}
+
+.results {
+    border: solid 5px black;
+    background-color: wheat;
+    margin: 50px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.winner {
+    font-size: 70px;
+    background-color: rgb(64, 77, 255);
 }
