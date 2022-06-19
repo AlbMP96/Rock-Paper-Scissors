@@ -126,7 +126,7 @@ function checkWin(playerScore, copmuterScore) {
         if (playerScore == 5) {
             winner.textContent = `PLAYER WINS`;
         } else {
-            winner.textContent = `PLAYER LOSES`;
+            winner.textContent = `COMPUTER WINS`;
         }
     }
 }
