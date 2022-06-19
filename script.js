@@ -1,6 +1,6 @@
 // Rock > Scissors > Paper > Rock
 
-// Random computer choice
+// Random computer choice-------------------------------------------------------------------------------------------------
 function computerPlay() {
     choiceComp = Math.floor(Math.random() * 3);
     switch (choiceComp) {
@@ -13,7 +13,7 @@ function computerPlay() {
     }
 }
 
-// Button listener to let the player choose
+// Button listener to let the player choose--------------------------------------------------------------------------------
 const rockBtn = document.querySelector('.rock');
 rockBtn.addEventListener('click', () => {
     game(playRound('rock', computerPlay()));
@@ -30,15 +30,16 @@ scissorsBtn.addEventListener('click', () => {
 });
 
 
-// Game logic
+// Game logic---------------------------------------------------------------------------------------------------------------
 let playRound = (playerSelection, computerSelection) => {
     playerSelection = playerSelection.toLowerCase();
 
-    console.log(`player: ${playerSelection}, computer: ${computerSelection}`)
+    // console.log(`player: ${playerSelection}, computer: ${computerSelection}`);
     if (playerSelection == computerSelection) {
         let result = 'Draw',
         computerPlay = computerSelection;
 
+        roundResult(playerSelection, computerSelection, result);
         return {
             'result': result,
             'computerPlay': computerPlay
@@ -52,6 +53,7 @@ let playRound = (playerSelection, computerSelection) => {
         let result = 'Player loses',
         computerPlay = computerSelection;
 
+        roundResult(playerSelection, computerSelection, result);
         return {
             'result': result,
             'computerPlay': computerPlay
@@ -65,6 +67,7 @@ let playRound = (playerSelection, computerSelection) => {
         let result = 'Player wins',
         computerPlay = computerSelection;
 
+        roundResult(playerSelection, computerSelection, result);
         return {
             'result': result,
             'computerPlay': computerPlay
@@ -72,52 +75,29 @@ let playRound = (playerSelection, computerSelection) => {
     }
 }
 
-// Game result
+// Game result-----------------------------------------------------------------------------------------------------------------------
 let playerScore = 0;
 let computerScore = 0;
-let rounds = 1;
+let round = 1;
 
 function game(playRound) {
 
-    const results = document.querySelector('.results');
-    const result = document.createElement('p');
-    result.setAttribute('id', 'result');
-
-    const computerChoice = document.createElement('p');
-    computerChoice.setAttribute('id', 'computerChoice');
-
-    const points = document.createElement('p');
-    points.setAttribute('id', 'points');
-
-    computerChoice.innerHTML = `Round ${rounds} <br> Computer choice: ${playRound.computerPlay}`;
-    results.appendChild(computerChoice);
-
     switch (playRound.result) {
-        case 'Draw':
-            result.textContent = 'Draw';
-            results.appendChild(result);
-            break;
-
         case 'Player wins':
-            result.textContent = 'Player wins';
-            results.appendChild(result);
             playerScore++;
             break;
 
         case 'Player loses':
-            result.textContent = 'Player loses';
-            results.appendChild(result);
             computerScore++;
             break;
     }
 
-    rounds++;
+    updateScore(playerScore, computerScore, round);
 
-    points.textContent = `Player: ${playerScore} - Computer ${computerScore}`;
-    results.appendChild(points);
+    round++;
 
     if (playerScore == 5 || computerScore == 5) {
-        const finalResult = document.querySelector('.final-result');
+        const finalResult = document.querySelector('.final-score');
         const end = document.createElement('h1');
         if (playerScore == 5) {
             end.textContent = `PLAYER WINS`
@@ -126,9 +106,26 @@ function game(playRound) {
         }
 
         finalResult.appendChild(end);
-
-        playerScore = 0;
-        computerScore = 0;
-        rounds = 1;
+        updateScore(0, 0, 1);
     }
+}
+
+// Update score----------------------------------------------------------------------------------------------------------------------
+function updateScore(playerScore, computerScore, round) {
+    const roundNumber = document.querySelector('.round-number');
+    const player = document.querySelector('.playerScore');
+    const computer = document.querySelector('.computerScore');
+
+    roundNumber.textContent = `Round: ${round}`
+    player.textContent = `Player: ${playerScore}`
+    computer.textContent = `Computer: ${computerScore}`
+}
+
+// Results from each round-----------------------------------------------------------------------------------------------------------
+function roundResult(playerSelection, computerSelection, result) {
+    const round = document.querySelector('.round-history');
+    const roundResult = document.querySelector('.result');
+
+    round.textContent = `Player play: ${playerSelection}, Computer play: ${computerSelection}`;
+    roundResult.textContent = `${result}`;
 }
